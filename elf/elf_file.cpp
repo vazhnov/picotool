@@ -164,6 +164,7 @@ int rp_check_elf_header(const elf32_header &eh) {
 }
 
 // Determine binary type (flash or ram)
+// Writes `true` into `ram_style` when detected RAM binary, `false` when detected FLASH binary.
 int rp_determine_binary_type(const elf32_header &eh, const std::vector<elf32_ph_entry>& entries, address_ranges flash_range, address_ranges ram_range, bool *ram_style) {
     for(const auto &entry : entries) {
         if (entry.type == PT_LOAD && entry.memsz) {
